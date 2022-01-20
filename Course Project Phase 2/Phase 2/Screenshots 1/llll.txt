@@ -1,0 +1,15 @@
+This video shows,  how PID controller can be optimized for a customized objective performance index (e.g. ITAE) in MATLAB using MATLAB's Genetic Algorithm tool.
+
+** UPDATE:- about compatibility/handling a minor glitch due to certain changes in recent versions of MATLAB**
+
+In recent versions of MATLAB (version 2019b and later), you may be getting a structure kind of output such as out.ITAE rather than simply ITAE, as explained in this video. To fix the issue, you can do the following:
+1. Export the ITAE data as a .MAT file. to do this: go to "library browser" and then to "sinks"
+2. Drag and drop 'To file' block to your SIMULINK block diagram.
+3. Rename the file name as 'ITAE' and change the save format to 'array'.
+4. To access this file and ITAE value in your MATLAB function, use the following code:
+ITAE = load('ITAE.mat');
+num_samples = size(ITAE.ans , 2);
+ITAE_value = ITAE.ans(2, num_samples);
+cost = ITAE_values(num_samples);
+Rest of the code will remain same as in the video. 
+Hope this helps...
